@@ -3,7 +3,7 @@
 *.suo
 *.user
 *.sln.docstates
-
+*/paket.exe
 # Build results
 [Dd]ebug/
 [Rr]elease/
