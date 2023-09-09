@@ -15,6 +15,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A955FFAA-5E6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{935E855F-18AF-4583-9B00-2796AF1DBDBC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{2C7839DC-6A05-4042-B951-A7807046033A}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{25D20126-F462-4588-88FE-4C8C0BF7BE58}"
+	ProjectSection(SolutionItems) = preProject
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +60,7 @@ Global
 		{3E1EFCDB-C1F4-4415-B19D-457BCBD5885B} = {A955FFAA-5E6D-48FE-AD8C-1B885BE05931}
 		{6C455F19-27D0-4240-8B1F-95F267CB0205} = {A955FFAA-5E6D-48FE-AD8C-1B885BE05931}
 		{609A5603-6EFD-48EE-8BEB-2BE04E3741F8} = {A955FFAA-5E6D-48FE-AD8C-1B885BE05931}
+		{25D20126-F462-4588-88FE-4C8C0BF7BE58} = {2C7839DC-6A05-4042-B951-A7807046033A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90B72479-AEA4-4292-B3AB-E2CF1FACA3C5}
