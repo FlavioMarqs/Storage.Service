@@ -1,17 +1,22 @@
-﻿using Storage.Handlers.Interfaces;
+﻿using Storage.Commands;
+using Storage.Handlers.Interfaces;
+using Storage.Repositories.Interfaces;
 using System.Windows.Input;
 
 namespace Storage.Handlers
 {
-    public class StringCommandHandler : ICommandHandler
+    public class StringCommandHandler : ICommandHandler<StringStoreCommand>
     {
-        public StringCommandHandler(IRepository<string> repo) 
+        private IRepository<string> _repository;
+
+        public StringCommandHandler(IRepository<string> repository) 
         { 
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public Task HandleAsync(ICommand command)
+        public async Task HandleAsync(StringStoreCommand command)
         {
-            throw new NotImplementedException();
+            await _repository.CreateAsync(command.Value);
         }
     }
 }

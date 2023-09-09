@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Storage.Commands.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +8,8 @@ using System.Windows.Input;
 
 namespace Storage.Handlers.Interfaces
 {
-    public interface ICommandHandler
+    public interface ICommandHandler<IStoreCommand>
     {
-        Task HandleAsync(ICommand command);
+        Task HandleAsync(IStoreCommand command);
     }
 }
