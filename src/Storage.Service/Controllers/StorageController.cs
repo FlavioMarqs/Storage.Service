@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Storage.Commands;
+using Storage.Handlers.Interfaces;
 using System.Net;
-using System.Windows.Input;
 
 namespace WebApplication1.Controllers
 {
@@ -9,23 +9,34 @@ namespace WebApplication1.Controllers
     [Route("[controller]")]
     public class StorageController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        private ICommandHandler<StringStoreCommand> _stringHandler;
 
         private readonly ILogger<StorageController> _logger;
 
-        public StorageController(ILogger<StorageController> logger)
+        public StorageController(ILogger<StorageController> logger, ICommandHandler<StringStoreCommand> stringHandler)
         {
-            _logger = logger;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _stringHandler = stringHandler ?? throw new ArgumentNullException(nameof(stringHandler));
         }
 
-        [HttpPut(Name = "Store")]
-        public async HttpStatusCode Put(StoreCommand<string> command)
+        [HttpPut(Name = "Strings")]
+        public async Task<HttpStatusCode> Put(StringStoreCommand command)
         {
+            if(string.IsNullOrWhiteSpace(command.Value))
+                return HttpStatusCode.BadRequest;
+
             _logger.LogInformation($"Storing string at {DateTime.UtcNow}.");
-            await _stringHandler.Handle(command);
+            
+            try
+            {
+                await _stringHandler.HandleAsync(command);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong when submitting a new StringStoreCommand", ex);
+                return HttpStatusCode.Conflict;
+            }
+
             return HttpStatusCode.OK;
         }
     }

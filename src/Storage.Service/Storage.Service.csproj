@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Storage.Commands\Storage.Commands.csproj" />
+    <ProjectReference Include="..\Storage.Handlers\Storage.Handlers.csproj" />
   </ItemGroup>
 
 </Project>
