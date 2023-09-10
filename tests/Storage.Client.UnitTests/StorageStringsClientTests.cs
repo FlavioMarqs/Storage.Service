@@ -26,7 +26,13 @@ namespace Storage.Client.UnitTests
         public void SetUp()
         {
             _httpClient = new Mock<IHttpClient>();
-            _client = new StorageStringsClient(_options, new TestsHttpClientFactory(_httpClient.Object));
+
+            _httpClient.Setup(d => d.SendAsync(It.IsAny<HttpRequestMessage>()))
+               .ReturnsAsync(new HttpResponseMessage(HttpStatusCode.NotFound))
+               .Verifiable();
+
+            _client = new StorageStringsClient(_options, 
+                new TestsHttpClientFactory(_httpClient.Object));
         }
 
         [TestCase(1)]
@@ -50,10 +56,6 @@ namespace Storage.Client.UnitTests
                 CreatedAt = DateTime.UtcNow
             };
 
-            _httpClient.Setup(d => d.SendAsync(It.IsAny<HttpRequestMessage>()))
-               .ReturnsAsync(new HttpResponseMessage(HttpStatusCode.NotFound))
-               .Verifiable(); 
-            
             _httpClient.Setup(d => d.SendAsync(It.Is<HttpRequestMessage>(f => f.Method == HttpMethod.Get && 
             f.RequestUri.AbsoluteUri.Equals($"{_options.StorageStringsUrl}/{identifier}", StringComparison.CurrentCultureIgnoreCase))))
                 .ReturnsAsync(new HttpResponseMessage(HttpStatusCode.OK) 
