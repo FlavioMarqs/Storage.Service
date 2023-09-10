@@ -4,3 +4,4 @@ AutoMapper.Extensions.Microsoft.DependencyInjection
 Microsoft.Extensions.Configuration
 Microsoft.Extensions.DependencyInjection
 Swashbuckle.AspNetCore
+Microsoft.VisualStudio.Azure.Containers.Tools.Targets
