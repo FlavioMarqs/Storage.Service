@@ -13,6 +13,7 @@ namespace Storage.Client
             var options = new StorageClientOptions() { ApiServiceUrl = configuration["ApiServiceUrl"] };
             serviceProvider.AddSingleton<StorageClientOptions>(options);
             serviceProvider.AddTransient<IStorageStringsClient, StorageStringsClient>();
+            serviceProvider.AddTransient<IHttpClientFactory, HttpClientFactory>();
 
             return serviceProvider;
         }
