@@ -1,3 +1,6 @@
 ﻿AutoFac
 AutoMapper
 AutoMapper.Extensions.Microsoft.DependencyInjection
+Microsoft.Extensions.Configuration
+Microsoft.Extensions.DependencyInjection
+Swashbuckle.AspNetCore

@@ -2,10 +2,9 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Storage.Commands.Commands;
 using Storage.Commands.Queries;
-using Storage.Domain;
+using Storage.DTOs.Requests;
+using Storage.Handlers.DTOs;
 using Storage.Handlers.Interfaces;
-using Storage.Service.Requests;
-using System.Net;
 
 namespace WebApplication1.Controllers
 {
@@ -15,6 +14,7 @@ namespace WebApplication1.Controllers
     {
         private readonly ICommandHandler<StringStoreCommand, StringDTO> _stringHandler;
         private readonly ICommandHandler<StringQueryCommand, StringDTO> _stringQueryHandler;
+        private readonly ICommandHandler<StringsQueryCommand, IEnumerable<StringDTO>> _stringsQueryHandler;
         private readonly IMapper _mapper;
         private readonly ILogger<StorageController> _logger;
 
@@ -32,8 +32,8 @@ namespace WebApplication1.Controllers
             _stringsQueryHandler = stringsQueryHandler ?? throw new ArgumentNullException(nameof(stringsQueryHandler));
         }
 
-        [HttpPut(Name = "String")]
-        public async Task<IActionResult> Put(StringCreationRequest request)
+        [HttpPost(Name = "Strings")]
+        public async Task<IActionResult> Post(StringCreationRequest request)
         {
             if(string.IsNullOrWhiteSpace(request.Value))
                 return BadRequest("Invalid value submitted; cannot be null, empty or whitespaces.");
@@ -54,43 +54,40 @@ namespace WebApplication1.Controllers
             return Ok();
         }
 
-        [HttpGet(Name = "Strings")]
-        public async Task<IActionResult> Get(StringQueryRequest request)
+        [HttpGet(Name = "Strings/{identifier:int}")]
+        public async Task<IActionResult> Get(int identifier)
         {
-            if (request.Identifier < 1)
+            if (identifier < 1)
                 return BadRequest("Invalid value submitted; must be above zero.");
 
-            _logger.LogInformation($"Querying for String with identifier {request.Identifier}");
+            _logger.LogInformation($"Querying for String with identifier {identifier}");
             try
             {
-                var command = _mapper.Map<StringQueryCommand>(request);
+                var command = new StringQueryCommand { Identifier = identifier };
                 await _stringQueryHandler.HandleAsync(command);
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Something went wrong when submitting a new StringStoreCommand", ex);
-                return NotFound(request.Identifier);
+                return NotFound(identifier);
             }
             return Ok();
         }
 
-        [HttpGet(Name = "Strings")]
-        public async Task<IActionResult> Get(StringsQueryRequest request)
+        [HttpGet(Name = "Strings/all/{includeDeleted:bool}")]
+        public async Task<IActionResult> Get(bool includeDeleted)
         {
-            if (request is null)
-                return BadRequest("Invalid value submitted.");
-
-            _logger.LogInformation($"Querying for Strings; includeDeleted={request.IncludeDeleted}");
+            _logger.LogInformation($"Querying for Strings; includeDeleted={includeDeleted}");
 
             try
             {
-                var command = _mapper.Map<StringsQueryCommand>(request);
-                await _stringQueryHandler.HandleAsync(command);
+                var command = new StringsQueryCommand { Identifier = includeDeleted };
+                await _stringsQueryHandler.HandleAsync(command);
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Something went wrong when submitting a new StringStoreCommand", ex);
-                return NotFound(request.Identifier);
+                return NotFound(ex.Message);
             }
             return Ok();
         }

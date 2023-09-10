@@ -1,5 +1,6 @@
 ﻿using Storage.Repositories;
 using Storage.Handlers;
+using Microsoft.AspNetCore.Builder;
 
 namespace Storage.Service
 {
@@ -12,14 +13,19 @@ namespace Storage.Service
             _config = config ?? throw new ArgumentNullException(nameof(config));
         }
 
-        public IServiceCollection ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddRepositories(_config);
             services.AddMvc().AddXmlSerializerFormatters();
             services.AddHandlers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            return services;
+        }
+
+        public void Configure(IApplicationBuilder app)
+        {
+            app.UseHttpsRedirection();
+            app.UseExceptionHandler();
         }
     }
 }
