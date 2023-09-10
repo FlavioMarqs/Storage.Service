@@ -18,11 +18,18 @@ namespace WebApplication1.Controllers
         private readonly IMapper _mapper;
         private readonly ILogger<StorageController> _logger;
 
-        public StorageController(ILogger<StorageController> logger, ICommandHandler<StringStoreCommand, StringDTO> stringHandler, IMapper mapper)
+        public StorageController(
+            ILogger<StorageController> logger, 
+            ICommandHandler<StringStoreCommand, StringDTO> stringHandler, 
+            ICommandHandler<StringQueryCommand, StringDTO> stringQueryHandler, 
+            ICommandHandler<StringsQueryCommand, IEnumerable<StringDTO>> stringsQueryHandler, 
+            IMapper mapper)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _stringHandler = stringHandler ?? throw new ArgumentNullException(nameof(stringHandler));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _stringQueryHandler = stringQueryHandler ?? throw new ArgumentNullException(nameof(stringQueryHandler));
+            _stringsQueryHandler = stringsQueryHandler ?? throw new ArgumentNullException(nameof(stringsQueryHandler));
         }
 
         [HttpPut(Name = "String")]
@@ -57,6 +64,27 @@ namespace WebApplication1.Controllers
             try
             {
                 var command = _mapper.Map<StringQueryCommand>(request);
+                await _stringQueryHandler.HandleAsync(command);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong when submitting a new StringStoreCommand", ex);
+                return NotFound(request.Identifier);
+            }
+            return Ok();
+        }
+
+        [HttpGet(Name = "Strings")]
+        public async Task<IActionResult> Get(StringsQueryRequest request)
+        {
+            if (request is null)
+                return BadRequest("Invalid value submitted.");
+
+            _logger.LogInformation($"Querying for Strings; includeDeleted={request.IncludeDeleted}");
+
+            try
+            {
+                var command = _mapper.Map<StringsQueryCommand>(request);
                 await _stringQueryHandler.HandleAsync(command);
             }
             catch (Exception ex)

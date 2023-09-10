@@ -10,7 +10,7 @@ namespace Storage.Repositories.Interfaces
 
         Task<T> DeleteAsync(int entity);
 
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsync(bool IncludeDeleted = false);
 
         Task<T> GetById(int id);
     }

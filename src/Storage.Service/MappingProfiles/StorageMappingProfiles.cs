@@ -9,8 +9,13 @@ namespace Storage.Service.MappingProfiles
     {
         public StorageMappingProfiles() 
         {
-            CreateMap<StringCreationRequest, StringStoreCommand>();
+            CreateMap<StringCreationRequest, StringStoreCommand>()
+                .ForMember(d => d.Identifier, s => s.MapFrom(o => o.Value));
+
             CreateMap<StringQueryRequest, StringQueryCommand>();
+
+            CreateMap<StringsQueryRequest, StringsQueryCommand>()
+                .ForMember(d => d.Identifier, s => s.MapFrom(o => o.IncludeDeleted));
         }
     }
 }

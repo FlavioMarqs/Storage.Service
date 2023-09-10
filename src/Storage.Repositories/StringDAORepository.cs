@@ -48,13 +48,13 @@ namespace Storage.Repositories
             }
         }
 
-        public async Task<IEnumerable<StringDAO>> GetAllAsync()
+        public async Task<IEnumerable<StringDAO>> GetAllAsync(bool includeDeleted = false)
         {
             using (var context = _dbContextFactory.CreateDbContext())
             {
-                var results = context.StringsSet.Where(d => d.DeletedAt == null);
+                var results = context.StringsSet.Where(d => (d.DeletedAt == null) == includeDeleted);
 
-                return results.ToList();
+                return await Task.FromResult(results.ToList());
             }
         }
 
