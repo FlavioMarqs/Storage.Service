@@ -1,6 +1,7 @@
 ﻿group Tests
 NUnit
 Moq
-NUnitTestAdapter
+NUnit3TestAdapter
 FluentAssertions
 coverlet.collector
+Microsoft.Net.Test.Sdk
