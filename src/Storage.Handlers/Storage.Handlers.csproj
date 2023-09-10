@@ -7,7 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Storage.Commands\Storage.Commands.csproj" />
-    <ProjectReference Include="..\Storage.Domain\Storage.Domain.csproj" />
+    <ProjectReference Include="..\Storage.DTOs\Storage.DTOs.csproj" />
     <ProjectReference Include="..\Storage.Repositories\Storage.Repositories.csproj" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />

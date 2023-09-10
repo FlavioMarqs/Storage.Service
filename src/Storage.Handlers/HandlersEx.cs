@@ -2,7 +2,7 @@
 using Storage.Commands.Commands;
 using Storage.Handlers.Interfaces;
 using Storage.Commands.Queries;
-using Storage.Domain;
+using Storage.Handlers.DTOs;
 
 namespace Storage.Handlers
 {
@@ -12,6 +12,7 @@ namespace Storage.Handlers
         {
             services.AddTransient<ICommandHandler<StringStoreCommand, StringDTO>, StringCommandHandler>();
             services.AddTransient<ICommandHandler<StringQueryCommand, StringDTO>, StringQueryHandler>();
+            services.AddTransient<ICommandHandler<StringsQueryCommand, IEnumerable<StringDTO>>, StringsQueryHandler>();
 
             return services;
         }

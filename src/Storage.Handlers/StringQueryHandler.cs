@@ -3,7 +3,7 @@ using Storage.DAOs;
 using Storage.Handlers.Interfaces;
 using Storage.Repositories.Interfaces;
 using AutoMapper;
-using Storage.Domain;
+using Storage.Handlers.DTOs;
 
 namespace Storage.Handlers
 {
