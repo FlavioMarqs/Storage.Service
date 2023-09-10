@@ -17,16 +17,18 @@ namespace Storage.Client
             => throw new NotImplementedException();
 
         public async Task<HttpResponseMessage> GetAllStringsAsync(StringsQueryRequest request)
-            => await SendAsync(HttpMethod.Get, $"{_options.StorageStringsUrl}/all/{request.IncludeDeleted}", null);
+            => await SendAsync(HttpMethod.Get, $"{_options.StorageStringsUrl}/all/{request.IncludeDeleted}");
 
         public async Task<HttpResponseMessage> GetStringByIdAsync(StringQueryRequest request)
-            => await SendAsync(HttpMethod.Get, $"{_options.StorageStringsUrl}/{request.Identifier}", null);
+            => await SendAsync(HttpMethod.Get, $"{_options.StorageStringsUrl}/{request.Identifier}");
 
 
         public async Task<HttpResponseMessage> PutStringAsync(StringCreationRequest request)
-            => await SendAsync(HttpMethod.Put, $"{_options.StorageStringsUrl}", JsonSerializer.Serialize(request, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase}));
+            => await SendAsync(HttpMethod.Put, 
+                $"{_options.StorageStringsUrl}", 
+                JsonSerializer.Serialize(request, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase}));
 
-        private async Task<HttpResponseMessage> SendAsync(HttpMethod httpMethod, string url, string payload)
+        private async Task<HttpResponseMessage> SendAsync(HttpMethod httpMethod, string url, string payload = null)
         {
             using (var client = new HttpClient())
             {
