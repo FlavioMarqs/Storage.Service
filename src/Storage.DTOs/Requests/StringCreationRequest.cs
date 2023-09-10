@@ -1,4 +1,4 @@
-﻿namespace Storage.Service.Requests
+﻿namespace Storage.DTOs.Requests
 {
     public class StringCreationRequest
     {

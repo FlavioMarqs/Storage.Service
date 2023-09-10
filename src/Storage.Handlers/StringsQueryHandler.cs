@@ -2,7 +2,7 @@
 using Storage.Commands.Commands;
 using Storage.Commands.Queries;
 using Storage.DAOs;
-using Storage.Domain;
+using Storage.Handlers.DTOs;
 using Storage.Handlers.Interfaces;
 using Storage.Repositories.Interfaces;
 using System;

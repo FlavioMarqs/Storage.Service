@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using Storage.Commands.Commands;
 using Storage.DAOs;
-using Storage.Domain;
+using Storage.DTOs.Responses;
+using Storage.Handlers.DTOs;
 using Storage.Handlers.Interfaces;
 using Storage.Repositories.Interfaces;
 
