@@ -1,17 +1,28 @@
-﻿using Storage.Handlers.Interfaces;
-using System.Windows.Input;
+﻿using AutoMapper;
+using Storage.Commands.Commands;
+using Storage.DAOs;
+using Storage.Domain;
+using Storage.Handlers.Interfaces;
+using Storage.Repositories.Interfaces;
 
 namespace Storage.Handlers
 {
-    public class StringCommandHandler : ICommandHandler
+    public class StringCommandHandler : ICommandHandler<StringStoreCommand, StringDTO>
     {
-        public StringCommandHandler(IRepository<string> repo) 
+        private readonly IStoreRepository<StringDAO> _repository;
+        private readonly IMapper _mapper;
+
+        public StringCommandHandler(IStoreRepository<StringDAO> repository, IMapper mapper) 
         { 
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public Task HandleAsync(ICommand command)
+        public async Task<StringDTO> HandleAsync(StringStoreCommand command)
         {
-            throw new NotImplementedException();
+            var dao = _mapper.Map<StringDAO>(command);
+            var result = await _repository.CreateAsync(dao);
+            return _mapper.Map<StringDTO>(result);
         }
     }
 }

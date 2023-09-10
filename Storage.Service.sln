@@ -5,11 +5,41 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Storage.Service", "src\Storage.Service\Storage.Service.csproj", "{F839CAB4-C63F-412E-999F-1D443EB05D60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage.Commands", "src\Storage.Commands\Storage.Commands.csproj", "{3E1EFCDB-C1F4-4415-B19D-457BCBD5885B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Storage.Commands", "src\Storage.Commands\Storage.Commands.csproj", "{3E1EFCDB-C1F4-4415-B19D-457BCBD5885B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage.Handlers", "src\Storage.Handlers\Storage.Handlers.csproj", "{6C455F19-27D0-4240-8B1F-95F267CB0205}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Storage.Handlers", "src\Storage.Handlers\Storage.Handlers.csproj", "{6C455F19-27D0-4240-8B1F-95F267CB0205}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage.Repositories", "src\Storage.Repositories\Storage.Repositories.csproj", "{609A5603-6EFD-48EE-8BEB-2BE04E3741F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Storage.Repositories", "src\Storage.Repositories\Storage.Repositories.csproj", "{609A5603-6EFD-48EE-8BEB-2BE04E3741F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A955FFAA-5E6D-48FE-AD8C-1B885BE05931}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{935E855F-18AF-4583-9B00-2796AF1DBDBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{2C7839DC-6A05-4042-B951-A7807046033A}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{25D20126-F462-4588-88FE-4C8C0BF7BE58}"
+	ProjectSection(SolutionItems) = preProject
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{5EEB8857-D2A6-4FAA-BA42-30494FD1C1AD}"
+	ProjectSection(SolutionItems) = preProject
+		paket.dependencies = paket.dependencies
+		paket.lock = paket.lock
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{761974E3-780F-4B6B-B077-CE2CD3059FFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage.DAOs", "src\Storage.DAOs\Storage.DAOs.csproj", "{02869B6B-A358-40E8-BE02-EABCDE64ABA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage.Domain", "src\Storage.Domain\Storage.Domain.csproj", "{CAE2220E-CB62-4D57-9C20-A13CEFB29123}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +63,28 @@ Global
 		{609A5603-6EFD-48EE-8BEB-2BE04E3741F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{609A5603-6EFD-48EE-8BEB-2BE04E3741F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{609A5603-6EFD-48EE-8BEB-2BE04E3741F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02869B6B-A358-40E8-BE02-EABCDE64ABA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02869B6B-A358-40E8-BE02-EABCDE64ABA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02869B6B-A358-40E8-BE02-EABCDE64ABA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02869B6B-A358-40E8-BE02-EABCDE64ABA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAE2220E-CB62-4D57-9C20-A13CEFB29123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAE2220E-CB62-4D57-9C20-A13CEFB29123}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAE2220E-CB62-4D57-9C20-A13CEFB29123}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAE2220E-CB62-4D57-9C20-A13CEFB29123}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F839CAB4-C63F-412E-999F-1D443EB05D60} = {A955FFAA-5E6D-48FE-AD8C-1B885BE05931}
+		{3E1EFCDB-C1F4-4415-B19D-457BCBD5885B} = {A955FFAA-5E6D-48FE-AD8C-1B885BE05931}
+		{6C455F19-27D0-4240-8B1F-95F267CB0205} = {A955FFAA-5E6D-48FE-AD8C-1B885BE05931}
+		{609A5603-6EFD-48EE-8BEB-2BE04E3741F8} = {761974E3-780F-4B6B-B077-CE2CD3059FFE}
+		{25D20126-F462-4588-88FE-4C8C0BF7BE58} = {2C7839DC-6A05-4042-B951-A7807046033A}
+		{5EEB8857-D2A6-4FAA-BA42-30494FD1C1AD} = {2C7839DC-6A05-4042-B951-A7807046033A}
+		{761974E3-780F-4B6B-B077-CE2CD3059FFE} = {A955FFAA-5E6D-48FE-AD8C-1B885BE05931}
+		{02869B6B-A358-40E8-BE02-EABCDE64ABA3} = {761974E3-780F-4B6B-B077-CE2CD3059FFE}
+		{CAE2220E-CB62-4D57-9C20-A13CEFB29123} = {A955FFAA-5E6D-48FE-AD8C-1B885BE05931}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90B72479-AEA4-4292-B3AB-E2CF1FACA3C5}
