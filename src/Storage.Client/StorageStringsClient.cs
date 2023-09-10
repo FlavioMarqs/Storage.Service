@@ -8,9 +8,11 @@ namespace Storage.Client
     public class StorageStringsClient : IStorageStringsClient
     {
         private readonly StorageClientOptions _options;
-        public StorageStringsClient(StorageClientOptions options)
+        private readonly IHttpClientFactory _httpClientFactory;
+        public StorageStringsClient(StorageClientOptions options, IHttpClientFactory httpClientFactory)
         {
             _options = options ?? throw new ArgumentNullException(nameof(options));
+            _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
         }
 
         public Task<HttpResponseMessage> DeleteStringAsync(StringRemovalRequest request)
@@ -30,7 +32,7 @@ namespace Storage.Client
 
         private async Task<HttpResponseMessage> SendAsync(HttpMethod httpMethod, string url, string payload = null)
         {
-            using (var client = new HttpClient())
+            using (var client = _httpClientFactory.Create())
             {
                 var request = new HttpRequestMessage(httpMethod, url);
                 request.Content = string.IsNullOrWhiteSpace(payload) ? null : new StringContent(payload);
