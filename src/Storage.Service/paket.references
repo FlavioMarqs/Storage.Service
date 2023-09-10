@@ -1,2 +1,3 @@
 ﻿AutoFac
 AutoMapper
+AutoMapper.Extensions.Microsoft.DependencyInjection

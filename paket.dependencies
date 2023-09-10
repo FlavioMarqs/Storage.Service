@@ -7,3 +7,4 @@ nuget Microsoft.EntityFrameworkCore !~> 7.0.10
 nuget Microsoft.EntityFrameworkCore.SqlServer
 nuget AutoFac
 nuget AutoMapper
+nuget AutoMapper.Extensions.Microsoft.DependencyInjection
