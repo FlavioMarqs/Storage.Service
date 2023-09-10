@@ -1,3 +1,4 @@
 ﻿Microsoft.EntityFrameworkCore
 Microsoft.EntityFrameworkCore.SqlServer
 AutoFac
+AutoMapper
