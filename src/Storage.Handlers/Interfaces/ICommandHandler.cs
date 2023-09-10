@@ -8,8 +8,8 @@ using System.Windows.Input;
 
 namespace Storage.Handlers.Interfaces
 {
-    public interface ICommandHandler<IStoreCommand>
+    public interface ICommandHandler<IStoreCommand, IDTO>
     {
-        Task HandleAsync(IStoreCommand command);
+        Task<IDTO> HandleAsync(IStoreCommand command);
     }
 }
