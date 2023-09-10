@@ -17,8 +17,9 @@ group Tests
 source https://api.nuget.org/v3/index.json
 framework: net6.0, netcore3.1
 
-nuget NUnit
-nuget Moq
-nuget NUnitTestAdapter
+nuget coverlet.collector
 nuget FluentAssertions
-nuget coverlet.collector 
+nuget Moq
+nuget NUnit
+nuget NUnit3TestAdapter
+nuget Microsoft.Net.Test.Sdk
