@@ -1,0 +1,6 @@
+﻿group Tests
+NUnit
+Moq
+NUnitTestAdapter
+FluentAssertions
+coverlet.collector
