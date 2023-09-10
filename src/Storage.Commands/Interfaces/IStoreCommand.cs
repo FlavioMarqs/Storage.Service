@@ -2,6 +2,6 @@
 {
     public interface IStoreCommand<T>
     {
-        T Value { get; set; }
+        T Identifier { get; set; }
     }
 }

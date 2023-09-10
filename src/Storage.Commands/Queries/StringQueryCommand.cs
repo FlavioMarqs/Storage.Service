@@ -9,6 +9,6 @@ namespace Storage.Commands.Queries
 {
     public class StringQueryCommand : IStoreCommand<int>
     {
-        public int Value { get; set; }
+        public int Identifier { get; set; }
     }
 }
