@@ -19,7 +19,7 @@ namespace Storage.Client
             => throw new NotImplementedException();
 
         public async Task<HttpResponseMessage> GetAllStringsAsync(StringsQueryRequest request)
-            => await SendAsync(HttpMethod.Get, $"{_options.StorageStringsUrl}/all/{request.IncludeDeleted}");
+            => await SendAsync(HttpMethod.Get, $"{_options.StorageStringsUrl}/{request.IncludeDeleted}");
 
         public async Task<HttpResponseMessage> GetStringByIdAsync(StringQueryRequest request)
             => await SendAsync(HttpMethod.Get, $"{_options.StorageStringsUrl}/{request.Identifier}");

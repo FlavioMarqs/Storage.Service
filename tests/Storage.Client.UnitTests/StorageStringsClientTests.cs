@@ -81,7 +81,7 @@ namespace Storage.Client.UnitTests
                 .Verifiable();
 
             var result = await _client.GetStringByIdAsync(new DTOs.Requests.StringQueryRequest { Identifier = identifier });
-            _httpClient.Verify(d => d.SendAsync(It.Is<HttpRequestMessage>(f => f.Method == HttpMethod.Get && f.RequestUri.AbsoluteUri.Equals($"http://localhost:7209/Storage/Strings/{identifier}"))), Times.Once);
+            _httpClient.Verify(d => d.SendAsync(It.Is<HttpRequestMessage>(f => f.Method == HttpMethod.Get && f.RequestUri.AbsoluteUri.Equals($"{_options.StorageStringsUrl}/{identifier}"))), Times.Once);
             var resultObject = JsonSerializer.Deserialize<StringResponse>(await result.Content.ReadAsStringAsync());
             resultObject.Identifier.Should().Be(identifier);
             resultObject.StringValue.Should().Be(expectedString);
@@ -107,7 +107,7 @@ namespace Storage.Client.UnitTests
             };
 
             _httpClient.Setup(d => d.SendAsync(It.Is<HttpRequestMessage>(f => f.Method == HttpMethod.Get &&
-            f.RequestUri.AbsoluteUri.Equals($"{_options.StorageStringsUrl}/all/{includeDeleted}", StringComparison.CurrentCultureIgnoreCase))))
+            f.RequestUri.AbsoluteUri.Equals($"{_options.StorageStringsUrl}/{includeDeleted}", StringComparison.CurrentCultureIgnoreCase))))
                 .ReturnsAsync(new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new StringContent(JsonSerializer.Serialize(expectedResponse))
@@ -115,7 +115,7 @@ namespace Storage.Client.UnitTests
                 .Verifiable();
 
             var result = await _client.GetAllStringsAsync(new DTOs.Requests.StringsQueryRequest { IncludeDeleted = includeDeleted });
-            _httpClient.Verify(d => d.SendAsync(It.Is<HttpRequestMessage>(f => f.Method == HttpMethod.Get && f.RequestUri.AbsoluteUri.Equals($"{_options.StorageStringsUrl}/all/{includeDeleted}", StringComparison.CurrentCultureIgnoreCase))), Times.Once);
+            _httpClient.Verify(d => d.SendAsync(It.Is<HttpRequestMessage>(f => f.Method == HttpMethod.Get && f.RequestUri.AbsoluteUri.Equals($"{_options.StorageStringsUrl}/{includeDeleted}", StringComparison.CurrentCultureIgnoreCase))), Times.Once);
             var resultObject = JsonSerializer.Deserialize<IEnumerable<StringResponse>>(await result.Content.ReadAsStringAsync());
             
             foreach(var item in resultObject)
