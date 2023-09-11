@@ -43,7 +43,7 @@ namespace WebApplication1.Controllers
             try
             {
                 var command = _mapper.Map<StringStoreCommand>(request);
-                await _stringHandler.HandleAsync(command);
+                return Ok(await _stringHandler.HandleAsync(command));
             }
             catch (Exception ex)
             {
@@ -64,14 +64,13 @@ namespace WebApplication1.Controllers
             try
             {
                 var command = new StringQueryCommand { Identifier = identifier };
-                await _stringQueryHandler.HandleAsync(command);
+                return Ok(await _stringQueryHandler.HandleAsync(command));
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Something went wrong when submitting a new StringStoreCommand", ex);
                 return NotFound(identifier);
             }
-            return Ok();
         }
 
         [HttpGet(Name = "Strings/all/{includeDeleted:bool}")]
@@ -82,14 +81,13 @@ namespace WebApplication1.Controllers
             try
             {
                 var command = new StringsQueryCommand { Identifier = includeDeleted };
-                await _stringsQueryHandler.HandleAsync(command);
+                return Ok(await _stringsQueryHandler.HandleAsync(command));
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong when submitting a new StringStoreCommand", ex);
+                _logger.LogError($"Something went wrong when submitting a new StringsQueryCommand", ex);
                 return NotFound(ex.Message);
             }
-            return Ok();
         }
     }
 }
