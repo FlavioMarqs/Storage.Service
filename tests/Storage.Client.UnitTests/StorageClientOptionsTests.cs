@@ -15,7 +15,7 @@ namespace Storage.Client.UnitTests
 
             options.ApiServiceUrl.Should().Be(url);
             options.ApiServiceUrlWithSlash.Should().Be($"{url.TrimEnd('/')}/");
-            options.StorageStringsUrl.Should().Be($"{options.ApiServiceUrlWithSlash}Storage/Strings");
+            options.StorageStringsUrl.Should().Be($"{options.ApiServiceUrlWithSlash}StorageStrings");
         }
     }
 }

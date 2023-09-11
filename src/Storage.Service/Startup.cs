@@ -1,6 +1,5 @@
 ﻿using Storage.Repositories;
 using Storage.Handlers;
-using Microsoft.AspNetCore.Builder;
 
 namespace Storage.Service
 {
@@ -22,10 +21,11 @@ namespace Storage.Service
 
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(WebApplication app, IWebHostEnvironment env)
         {
             app.UseHttpsRedirection();
             app.UseExceptionHandler();
+            app.UseRouting();
         }
     }
 }
