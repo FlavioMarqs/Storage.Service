@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "WebApplication1": {
+    "Storage.Service": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
