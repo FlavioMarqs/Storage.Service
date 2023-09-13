@@ -6,20 +6,20 @@ using Storage.DTOs.Requests;
 using Storage.Handlers.DTOs;
 using Storage.Handlers.Interfaces;
 
-namespace WebApplication1.Controllers
+namespace Storage.Service.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class StorageController : ControllerBase
+    public class StorageStringsController : ControllerBase
     {
         private readonly ICommandHandler<StringStoreCommand, StringDTO> _stringHandler;
         private readonly ICommandHandler<StringQueryCommand, StringDTO> _stringQueryHandler;
         private readonly ICommandHandler<StringsQueryCommand, IEnumerable<StringDTO>> _stringsQueryHandler;
         private readonly IMapper _mapper;
-        private readonly ILogger<StorageController> _logger;
+        private readonly ILogger<StorageStringsController> _logger;
 
-        public StorageController(
-            ILogger<StorageController> logger, 
+        public StorageStringsController(
+            ILogger<StorageStringsController> logger, 
             ICommandHandler<StringStoreCommand, StringDTO> stringHandler, 
             ICommandHandler<StringQueryCommand, StringDTO> stringQueryHandler, 
             ICommandHandler<StringsQueryCommand, IEnumerable<StringDTO>> stringsQueryHandler, 
@@ -32,7 +32,7 @@ namespace WebApplication1.Controllers
             _stringsQueryHandler = stringsQueryHandler ?? throw new ArgumentNullException(nameof(stringsQueryHandler));
         }
 
-        [HttpPost(Name = "Strings")]
+        [HttpPost]
         public async Task<IActionResult> Post(StringCreationRequest request)
         {
             if(string.IsNullOrWhiteSpace(request.Value))
@@ -50,11 +50,10 @@ namespace WebApplication1.Controllers
                 _logger.LogError($"Something went wrong when submitting a new StringStoreCommand", ex);
                 return Conflict(ex.GetType());
             }
-
-            return Ok();
         }
 
-        [HttpGet(Name = "Strings/{identifier:int}")]
+        [HttpGet]
+        [Route("/[controller]/{identifier:int}")]
         public async Task<IActionResult> Get(int identifier)
         {
             if (identifier < 1)
@@ -73,7 +72,8 @@ namespace WebApplication1.Controllers
             }
         }
 
-        [HttpGet(Name = "Strings/all/{includeDeleted:bool}")]
+        [HttpGet]
+        [Route("/[controller]/{includeDeleted:bool}")]
         public async Task<IActionResult> Get(bool includeDeleted)
         {
             _logger.LogInformation($"Querying for Strings; includeDeleted={includeDeleted}");

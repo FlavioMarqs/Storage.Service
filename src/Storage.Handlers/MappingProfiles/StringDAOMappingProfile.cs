@@ -9,7 +9,7 @@ namespace Storage.Handlers.MappingProfiles
     {
         public StringDAOMappingProfile()
         {
-            CreateMap<StringStoreCommand, StringDTO>()
+            CreateMap<StringStoreCommand, StringDAO>()
                 .ForMember(d => d.StringValue, s => s.MapFrom(o => o.Identifier))
                 .ForMember(d => d.CreatedAt, s => s.MapFrom(o => DateTime.UtcNow));
         }

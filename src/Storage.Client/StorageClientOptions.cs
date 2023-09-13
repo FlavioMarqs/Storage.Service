@@ -2,7 +2,7 @@
 {
     public class StorageClientOptions
     {
-        private const string _stringsControllerPath = "Storage/Strings";
+        private const string _stringsControllerPath = "StorageStrings";
 
         public string ApiServiceUrl { get; set; }
 
