@@ -50,6 +50,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Storage.DTOs", "src\Storage
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Storage.Client.UnitTests", "tests\Storage.Client.UnitTests\Storage.Client.UnitTests.csproj", "{FDA2A084-9180-4372-8C54-774CEB614A2E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "baget-data", "baget-data", "{EC4EC46A-55AC-40F1-B5E4-6F9EEB29FD05}"
+	ProjectSection(SolutionItems) = preProject
+		baget-data\baget.env = baget-data\baget.env
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{E58A62D6-0771-4208-88BF-C21E78926E5B}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\create_nuget_feed.ps1 = scripts\create_nuget_feed.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -140,6 +150,8 @@ Global
 		{40DD6136-5966-41EE-B629-8C5B938D15FC} = {36BEBCC4-F752-4D0E-82A6-E34ED4F453D3}
 		{386F625A-D9E6-4D84-BDDB-D1FF3B9F4716} = {A955FFAA-5E6D-48FE-AD8C-1B885BE05931}
 		{FDA2A084-9180-4372-8C54-774CEB614A2E} = {935E855F-18AF-4583-9B00-2796AF1DBDBC}
+		{EC4EC46A-55AC-40F1-B5E4-6F9EEB29FD05} = {2C7839DC-6A05-4042-B951-A7807046033A}
+		{E58A62D6-0771-4208-88BF-C21E78926E5B} = {2C7839DC-6A05-4042-B951-A7807046033A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90B72479-AEA4-4292-B3AB-E2CF1FACA3C5}
