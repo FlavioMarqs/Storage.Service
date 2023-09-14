@@ -2,6 +2,8 @@
 Write-Host ">>Building latest Storage.Client packages..."
 dotnet build -c Release ../Storage.Service.sln
 dotnet pack -c Release ../src/Storage.Client/
+dotnet pack -c Release ../src/Storage.DTOs/
+
 Write-Host ">>Finding .nupkg files..."
 $nupkgs = Get-ChildItem -recurse -Path ../src/ -filter *.nupkg
 
