@@ -10,8 +10,10 @@ nuget Microsoft.EntityFrameworkCore !~> 7.0.10
 nuget Microsoft.EntityFrameworkCore.SqlServer
 nuget Microsoft.Extensions.Configuration
 nuget Microsoft.Extensions.DependencyInjection
-nuget Swashbuckle.AspNetCore
+nuget Microsoft.Extensions.Hosting
 nuget Microsoft.VisualStudio.Azure.Containers.Tools.Targets !~> 1.19.4
+nuget Microsoft.NET.Build.Containers
+nuget Swashbuckle.AspNetCore
 
 group Tests
 source https://api.nuget.org/v3/index.json

@@ -6,8 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>b3b9c2f7-20f2-4df8-ab5b-482add89a772</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
-  <ItemGroup>
+	<ItemGroup>
     <ProjectReference Include="..\Storage.Commands\Storage.Commands.csproj" />
     <ProjectReference Include="..\Storage.Handlers\Storage.Handlers.csproj" />
   </ItemGroup>
